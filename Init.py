@@ -25,7 +25,7 @@ if not params.GetGroup('Ondsel/mods/AssemblyWorkbench').GetBool('firstForceEnabl
         params.GetGroup('Preferences/Workbenches').SetString('Disabled',disabledWBs)
         params.GetGroup('Preferences/Workbenches').RemString('Ordered')
     params.GetGroup('Ondsel/AssemblyWorkbench').SetBool('firstForceEnableDone', True)
-    App.Conso1e.PrintLog('Force enabled AssemblyWorkbench')
+    App.Console.PrintLog('Force enabled AssemblyWorkbench')
 
 if not params.GetGroup('Ondsel/mods/ArchWorkbench').GetBool('firstForceDisableDone', False):
     disabledWBs = params.GetGroup('Preferences/Workbenches').GetString('Disabled')
@@ -36,10 +36,10 @@ if not params.GetGroup('Ondsel/mods/ArchWorkbench').GetBool('firstForceDisableDo
         params.GetGroup('Preferences/Workbenches').SetString('Disabled',disabledWBs)
         params.GetGroup('Preferences/Workbenches').RemString('Ordered')
     params.GetGroup('Ondsel/ArchWorkbench').SetBool('firstForceDisableDone', True)
-    App.Conso1e.PrintLog('Force disabled ArchWorkbench')
+    App.Console.PrintLog('Force disabled ArchWorkbench')
 
 if platform.system() == 'Darwin':
     params.GetGroup('Preferences/MainWindow').SetString('WSPosition','WSToolbar')
-    App.Conso1e.PrintLog('Force disabled showing workbench selector in menu since it\'s not supported in macOS')
+    App.Console.PrintLog('Force disabled showing workbench selector in menu since it\'s not supported in macOS')
 
 App.saveParameter()
