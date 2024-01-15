@@ -24,7 +24,7 @@ if not params.GetGroup('Ondsel/mods/AssemblyWorkbench').GetBool('firstForceEnabl
         disabledWBs = ','.join(disabledWBs)
         params.GetGroup('Preferences/Workbenches').SetString('Disabled',disabledWBs)
         params.GetGroup('Preferences/Workbenches').RemString('Ordered')
-    params.GetGroup('Ondsel/AssemblyWorkbench').SetBool('firstForceEnableDone', True)
+    params.GetGroup('Ondsel/mods/AssemblyWorkbench').SetBool('firstForceEnableDone', True)
     App.Console.PrintLog('Force enabled AssemblyWorkbench')
 
 if not params.GetGroup('Ondsel/mods/ArchWorkbench').GetBool('firstForceDisableDone', False):
@@ -35,7 +35,7 @@ if not params.GetGroup('Ondsel/mods/ArchWorkbench').GetBool('firstForceDisableDo
         disabledWBs = ','.join(disabledWBs)
         params.GetGroup('Preferences/Workbenches').SetString('Disabled',disabledWBs)
         params.GetGroup('Preferences/Workbenches').RemString('Ordered')
-    params.GetGroup('Ondsel/ArchWorkbench').SetBool('firstForceDisableDone', True)
+    params.GetGroup('Ondsel/mods/ArchWorkbench').SetBool('firstForceDisableDone', True)
     App.Console.PrintLog('Force disabled ArchWorkbench')
 
 if not params.GetGroup('Ondsel/mods/Websites').GetBool('firstForceClean', False):
