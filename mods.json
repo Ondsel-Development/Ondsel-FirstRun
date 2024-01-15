@@ -1,0 +1,10 @@
+{
+    "addons":[
+        {"name":"Ondsel-Lens","url":"https://github.com/Ondsel-Development/Ondsel-Lens","branch":"master"},
+        {"name":"sheetmetal","url":"https://github.com/shaise/FreeCAD_SheetMetal","branch":"master"},
+        {"name":"fasteners","url":"https://github.com/shaise/FreeCAD_FastenersWB","branch":"master"}
+    ],
+    "preferencePacks":[
+        {"name":"OpenDark","url":"https://github.com/obelisk79/OpenDark","branch":"main"}
+    ]
+}
