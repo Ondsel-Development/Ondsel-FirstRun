@@ -31,7 +31,7 @@ if not params.GetGroup('Ondsel/mods/ArchWorkbench').GetBool('firstForceDisableDo
     disabledWBs = params.GetGroup('Preferences/Workbenches').GetString('Disabled')
     if not disabledWBs.__contains__('ArchWorkbench'):
         disabledWBs = disabledWBs.split(',')
-        disabledWBs.add('ArchWorkbench')
+        disabledWBs.append('ArchWorkbench')
         disabledWBs = ','.join(disabledWBs)
         params.GetGroup('Preferences/Workbenches').SetString('Disabled',disabledWBs)
         params.GetGroup('Preferences/Workbenches').RemString('Ordered')
