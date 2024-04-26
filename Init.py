@@ -42,7 +42,8 @@ if not params.GetGroup('Ondsel/mods/Websites').GetBool('firstForceClean', False)
     params.GetGroup('Preferences').RemGroup('Websites')
     params.GetGroup('Ondsel/mods/Websites').SetBool('firstForceClean', True)
 
-if platform.system() == 'Darwin':
+toolbar_on_menu = params.GetGroup('Preferences/MainWindow').GetString('WSPosition') != 'WSToolbar'
+if platform.system() == 'Darwin' and toolbar_on_menu:
     params.GetGroup('Preferences/MainWindow').SetString('WSPosition','WSToolbar')
     App.Console.PrintLog('Force disabled showing workbench selector in menu since it\'s not supported in macOS')
 
