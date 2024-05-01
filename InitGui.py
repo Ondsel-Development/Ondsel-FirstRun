@@ -10,5 +10,5 @@
 # ***************************************************************************
 
 import FreeCAD as App
-App.Console.PrintLog('Importing FirstRun\n')
+App.Console.PrintLog('Start Ondsel FirstRun script\n')
 import FirstRun
