@@ -9,24 +9,10 @@
 # *                                                                         *
 # ***************************************************************************
 
-import os
 import platform
-import shutil
 import FreeCAD as App
 
 params = App.ParamGet('User parameter:BaseApp')
-userModPath=os.path.join(FreeCAD.getUserAppDataDir(),"Mod")
-
-od_path=os.path.join(userModPath,"OpenDark")
-sm_path=os.path.join(userModPath,"sheetmetal")
-if not params.GetGroup('Ondsel/mods/OpenDark').GetBool('uninstalled',False):
-  if os.path.exists(od_path):
-    shutil.rmtree(od_path)
-  params.GetGroup('Ondsel/mods/OpenDark').SetBool('uninstalled',True)
-if not params.GetGroup('Ondsel/mods/sheetmetal').GetBool('uninstalled',False):
-  if os.path.exists(sm_path):
-    shutil.rmtree(sm_path)
-  params.GetGroup('Ondsel/mods/sheetmetal').SetBool('uninstalled',True)
 
 if not params.GetGroup('Ondsel/mods/AssemblyWorkbench').GetBool('firstForceEnableDone', False):
     disabledWBs = params.GetGroup('Preferences/Workbenches').GetString('Disabled')
@@ -53,6 +39,19 @@ if not params.GetGroup('Ondsel/mods/ArchWorkbench').GetBool('firstForceDisableDo
 if not params.GetGroup('Ondsel/mods/Websites').GetBool('firstForceClean', False):
     params.GetGroup('Preferences').RemGroup('Websites')
     params.GetGroup('Ondsel/mods/Websites').SetBool('firstForceClean', True)
+
+if not params.GetGroup('Ondsel/mods/TechDraw').GetBool('firstForceEnableSingleDimension', False):
+    params.GetGroup('Preferences/Mod/TechDraw').SetBool('SingleDimensioningTool',True)
+    params.GetGroup('Preferences/Mod/TechDraw').SetBool('SeparatedDimensioningTools',False)
+    params.GetGroup('Ondsel/mods/TechDraw').SetBool('firstForceEnableSingleDimension', True)
+
+if not params.GetGroup('Ondsel/mods/AddonManager').GetBool('firstSetScoreUrl', False):
+    params.GetGroup('Preferences/Addons').SetString('AddonsScoreURL',"https://ondsel.com/RecommendedAddons.json")
+    params.GetGroup('Ondsel/mods/AddonManager').SetBool('firstSetScoreUrl', True)
+
+if not params.GetGroup('Ondsel').GetBool('firstSetHeadlightIntensity', False):
+    params.GetGroup('Preferences/View').SetInt('HeadlightIntensity', 80)
+    params.GetGroup('Ondsel').SetBool('firstSetHeadlightIntensity', True)
 
 toolbar_on_menu = params.GetGroup('Preferences/MainWindow').GetString('WSPosition') != 'WSToolbar'
 if platform.system() == 'Darwin' and toolbar_on_menu:
