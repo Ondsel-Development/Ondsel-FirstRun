@@ -4,6 +4,6 @@
         {"name":"sheetmetal","url":"https://github.com/Ondsel-Development/FreeCAD_SheetMetal","branch":"flavor","installToUser":false}
     ],
     "preferencePacks":[
-        {"name":"OpenDark","url":"https://github.com/obelisk79/OpenTheme","branch":"main","installToUser":false}
+        {"name":"OpenTheme","url":"https://github.com/obelisk79/OpenTheme","branch":"main","installToUser":false}
     ]
 }
