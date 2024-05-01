@@ -9,12 +9,24 @@
 # *                                                                         *
 # ***************************************************************************
 
-import json
 import os
 import platform
+import shutil
 import FreeCAD as App
 
 params = App.ParamGet('User parameter:BaseApp')
+userModPath=os.path.join(FreeCAD.getUserAppDataDir(),"Mod")
+
+od_path=os.path.join(userModPath,"OpenDark")
+sm_path=os.path.join(userModPath,"sheetmetal")
+if not params.GetGroup('Ondsel/mods/OpenDark').GetBool('uninstalled',False):
+  if os.path.exists(od_path):
+    shutil.rmtree(od_path)
+  params.GetGroup('Ondsel/mods/OpenDark').SetBool('uninstalled',True)
+if not params.GetGroup('Ondsel/mods/sheetmetal').GetBool('uninstalled',False):
+  if os.path.exists(sm_path):
+    shutil.rmtree(sm_path)
+  params.GetGroup('Ondsel/mods/sheetmetal').SetBool('uninstalled',True)
 
 if not params.GetGroup('Ondsel/mods/AssemblyWorkbench').GetBool('firstForceEnableDone', False):
     disabledWBs = params.GetGroup('Preferences/Workbenches').GetString('Disabled')
