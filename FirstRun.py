@@ -16,6 +16,7 @@ import os
 import shutil
 from PySide import QtCore
 import install_mod
+import uninstall_mod
 
 version = App.Version()
 version = version[0].__str__() + '.' + version[1].__str__()
@@ -29,24 +30,18 @@ def onStart():
         timer.stop()
         timer.timeout.disconnect(onStart)
 
-        # Uninstall opendark and sheetmetal once
-        od_path=os.path.join(userModPath,"OpenDark")
-        sm_path=os.path.join(userModPath,"sheetmetal")
+        mw.addon_installers = []
 
-        if not params.GetGroup(f'Ondsel/mods/OpenDark').GetBool('uninstalled',False):
-          if os.path.exists(od_path):
-            shutil.rmtree(od_path)
-          params.GetGroup(f'Ondsel/mods/OpenDark').SetBool('uninstalled',True)
-        if not params.GetGroup(f'Ondsel/mods/sheetmetal').GetBool('uninstalled',False):
-          if os.path.exists(sm_path):
-            shutil.rmtree(sm_path)
-          params.GetGroup(f'Ondsel/mods/sheetmetal').SetBool('uninstalled',True)      
+        # uninstall addons that should be loaded from the bundle
+        for mod in ['OpenDark','sheetmetal']:
+          param_path = f'Ondsel/mods/{mod}'
+          if os.path.exists(os.path.join(userModPath,mod)) and not params.GetGroup(param_path).GetBool('Uninstalled',False):
+            mw.addon_installers.append(uninstall_mod.uninstaller(name=mod,param_path=param_path))     
         
         # Install updatable addons
         with open(os.path.join(modpath,'mods.json'), "r") as fp:
                     mods = json.load(fp)
 
-        mw.addon_installers = []
         for mod in mods["addons"]:
             param_path = f'Ondsel/{version}/mods/{mod["name"]}'
             if mod["installToUser"] and not params.GetGroup(param_path).GetBool('Installed', False):
