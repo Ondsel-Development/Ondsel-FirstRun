@@ -53,6 +53,10 @@ if not params.GetGroup('Ondsel').GetBool('firstSetHeadlightIntensity', False):
     params.GetGroup('Preferences/View').SetInt('HeadlightIntensity', 80)
     params.GetGroup('Ondsel').SetBool('firstSetHeadlightIntensity', True)
 
+if not params.GetGroup('Ondsel').GetBool('firstSetWorkbenchSelectorType', False):
+    params.GetGroup('Preferences/Workbenches').SetInt('WorkbenchSelectorType', 1)
+    params.GetGroup('Ondsel').SetBool('firstSetWorkbenchSelectorType', True)
+
 toolbar_on_menu = params.GetGroup('Preferences/MainWindow').GetString('WSPosition') != 'WSToolbar'
 if platform.system() == 'Darwin' and toolbar_on_menu:
     params.GetGroup('Preferences/MainWindow').SetString('WSPosition','WSToolbar')
