@@ -57,13 +57,10 @@ if not params.GetGroup('Ondsel').GetBool('firstSetHeadlightIntensity', False):
     params.GetGroup('Preferences/View').SetInt('HeadlightIntensity', 80)
     params.GetGroup('Ondsel').SetBool('firstSetHeadlightIntensity', True)
 
-if not params.GetGroup('Ondsel').GetBool('firstSetWorkbenchSelectorType', False):
+if not params.GetGroup('Ondsel').GetBool('firstSet_WorkbenchSelectorType', False):
     params.GetGroup('Preferences/Workbenches').SetInt('WorkbenchSelectorType', 1)
-    params.GetGroup('Ondsel').SetBool('firstSetWorkbenchSelectorType', True)
-
-toolbar_on_menu = params.GetGroup('Preferences/MainWindow').GetString('WSPosition') != 'WSToolbar'
-if platform.system() == 'Darwin' and toolbar_on_menu:
-    params.GetGroup('Preferences/MainWindow').SetString('WSPosition','WSToolbar')
-    App.Console.PrintLog('Force disabled showing workbench selector in menu since it\'s not supported in macOS')
+    if params.GetGroup('Preferences/MainWindow').GetString('WSPosition') != 'WSToolbar':
+        params.GetGroup('Preferences/MainWindow').SetString('WSPosition','WSToolbar')
+    params.GetGroup('Ondsel').SetBool('firstSet_WorkbenchSelectorType', True)
 
 App.saveParameter()

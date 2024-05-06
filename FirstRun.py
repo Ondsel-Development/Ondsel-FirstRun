@@ -34,10 +34,13 @@ def onStart():
 
         # uninstall addons that should be loaded from the bundle
         for mod in ['OpenDark','sheetmetal']:
-          param_path = f'Ondsel/mods/{mod}'
-          if os.path.exists(os.path.join(userModPath,mod)) and not params.GetGroup(param_path).GetBool('Uninstalled',False):
-            mw.addon_installers.append(uninstall_mod.uninstaller(name=mod,param_path=param_path))     
-        
+            param_path = f'Ondsel/mods/{mod}'
+            if os.path.exists(os.path.join(userModPath,mod)):
+                if params.GetGroup(param_path).GetBool('Uninstalled',False):
+                    mw.addon_installers.append(uninstall_mod.uninstaller(name=mod,param_path=param_path))
+            else:
+                params.GetGroup(param_path).SetBool('Uninstalled',True)
+
         # Install updatable addons
         with open(os.path.join(modpath,'mods.json'), "r") as fp:
                     mods = json.load(fp)
