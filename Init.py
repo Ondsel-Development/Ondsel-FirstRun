@@ -25,6 +25,10 @@ if not params.GetGroup('Ondsel/mods/AssemblyWorkbench').GetBool('firstForceEnabl
     params.GetGroup('Ondsel/mods/AssemblyWorkbench').SetBool('firstForceEnableDone', True)
     App.Console.PrintLog('Force enabled AssemblyWorkbench')
 
+if not params.GetGroup('Ondsel/mods/Assembly').GetBool('firstEnableExperimental', False):
+    params.GetGroup('Preferences/Mod/Assembly').SetBool('ExperimentalFeatures',True)
+    params.GetGroup('Ondsel/mods/Assembly').SetBool('firstEnableExperimental', True)
+
 if not params.GetGroup('Ondsel/mods/ArchWorkbench').GetBool('firstForceDisableDone', False):
     disabledWBs = params.GetGroup('Preferences/Workbenches').GetString('Disabled')
     if not disabledWBs.__contains__('ArchWorkbench'):
