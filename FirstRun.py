@@ -36,7 +36,7 @@ def onStart():
         for mod in ['OpenDark','sheetmetal']:
             param_path = f'Ondsel/mods/{mod}'
             if os.path.exists(os.path.join(userModPath,mod)):
-                if params.GetGroup(param_path).GetBool('Uninstalled',False):
+                if not params.GetGroup(param_path).GetBool('Uninstalled',False):
                     mw.addon_installers.append(uninstall_mod.uninstaller(name=mod,param_path=param_path))
             else:
                 params.GetGroup(param_path).SetBool('Uninstalled',True)
