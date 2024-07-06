@@ -63,4 +63,8 @@ if not params.GetGroup('Ondsel').GetBool('firstSet_WorkbenchSelectorType', False
         params.GetGroup('Preferences/MainWindow').SetString('WSPosition','WSToolbar')
     params.GetGroup('Ondsel').SetBool('firstSet_WorkbenchSelectorType', True)
 
+if not params.GetGroup('Ondsel').GetBool('firstSetQtStyle', False):
+    params.GetGroup('Preferences/General').SetString('QtStyle', 'Fusion')
+    params.GetGroup('Ondsel').SetBool('firstSetQtStyle', True)
+
 App.saveParameter()
