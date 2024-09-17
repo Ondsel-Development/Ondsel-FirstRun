@@ -53,10 +53,16 @@ if not params.GetGroup('Ondsel/mods/AddonManager').GetBool('firstSetScoreUrl', F
     params.GetGroup('Preferences/Addons').SetString('AddonsScoreURL',"https://ondsel.com/RecommendedAddons.json")
     params.GetGroup('Ondsel/mods/AddonManager').SetBool('firstSetScoreUrl', True)
 
-if not params.GetGroup('Ondsel').GetBool('firstUnSetHeadlightIntensity', False):
+if not params.GetGroup('Ondsel').GetBool('firstUnSetHeadlightPrefs', False):
     if params.GetGroup('Preferences/View').GetInt('HeadlightIntensity') == 80:
         params.GetGroup('Preferences/View').RemInt('HeadlightIntensity')
-    params.GetGroup('Ondsel').SetBool('firstUnSetHeadlightIntensity', True)
+    if params.GetGroup('Preferences/View').GetString('HeadlightDirection') == '(-0.00994448,0.318473,-0.94788)':
+        params.GetGroup('Preferences/View').RemString('HeadlightDirection')
+        params.GetGroup('Preferences/View').RemFloat('HeadlightRotationX')
+        params.GetGroup('Preferences/View').RemFloat('HeadlightRotationY')
+        params.GetGroup('Preferences/View').RemFloat('HeadlightRotationZ')
+        params.GetGroup('Preferences/View').RemFloat('HeadlightRotationW')
+    params.GetGroup('Ondsel').SetBool('firstUnSetHeadlightPrefs', True)
 
 if not params.GetGroup('Ondsel').GetBool('firstSet_WorkbenchSelectorType', False):
     params.GetGroup('Preferences/Workbenches').SetInt('WorkbenchSelectorType', 1)
