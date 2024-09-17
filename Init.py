@@ -53,9 +53,10 @@ if not params.GetGroup('Ondsel/mods/AddonManager').GetBool('firstSetScoreUrl', F
     params.GetGroup('Preferences/Addons').SetString('AddonsScoreURL',"https://ondsel.com/RecommendedAddons.json")
     params.GetGroup('Ondsel/mods/AddonManager').SetBool('firstSetScoreUrl', True)
 
-if not params.GetGroup('Ondsel').GetBool('firstSetHeadlightIntensity', False):
-    params.GetGroup('Preferences/View').SetInt('HeadlightIntensity', 80)
-    params.GetGroup('Ondsel').SetBool('firstSetHeadlightIntensity', True)
+if not params.GetGroup('Ondsel').GetBool('firstUnSetHeadlightIntensity', False):
+    if params.GetGroup('Preferences/View').GetInt('HeadlightIntensity') == 80:
+        params.GetGroup('Preferences/View').RemInt('HeadlightIntensity')
+    params.GetGroup('Ondsel').SetBool('firstUnSetHeadlightIntensity', True)
 
 if not params.GetGroup('Ondsel').GetBool('firstSet_WorkbenchSelectorType', False):
     params.GetGroup('Preferences/Workbenches').SetInt('WorkbenchSelectorType', 1)
